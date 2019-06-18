@@ -1,0 +1,21 @@
+VAGRANTFILE_API_VERSION = "2"
+
+Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
+  # Use the same key for each machine
+  config.ssh.insert_key = false
+
+  config.vm.define "master" do |master|
+    master.vm.box = "wittman/centos-7.2-ansible"
+    master.vm.hostname = "ansible-master"
+    master.vm.network "private_network", ip: "192.168.50.4"
+    master.vm.network "forwarded_port", guest: 80, host: 8080
+    master.vm.network "forwarded_port", guest: 443, host: 8443
+  end
+  config.vm.define "host" do |host|
+    host.vm.box = "ubuntu/trusty64"
+    host.vm.hostname = "web"
+    host.vm.network "private_network", ip: "192.168.50.5"
+    host.vm.network "forwarded_port", guest: 80, host: 8081
+    host.vm.network "forwarded_port", guest: 443, host: 8444
+  end
+end
