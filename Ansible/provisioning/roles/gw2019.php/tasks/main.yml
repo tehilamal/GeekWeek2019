@@ -1,20 +1,17 @@
 ---
 # - name: Add the ondrej PHP PPA
-  # apt_repository: repo='ppa:ondrej/php'
+# PHP
+- name: Add the ondrej PHP PPA
+  apt_repository: repo='ppa:ondrej/php'
 - name: Update the apt cache
   apt: update_cache=yes cache_valid_time=3600
 - name: Install PHP
-  apt: name={{item}} update_cache=yes state=latest
+  apt: name={{item}} update_cache=yes state=installed
   with_items:
-    - php5
-    - php5-fpm
-    - php5-mysql
-    - php5-cli
-    - php5-curl
-    - php5-intl
-    - php5-json
-    - php5-mcrypt
-    - php5-sqlite
+    - php 
+    - php-fpm 
+    - php-mysql
+    - php-xml
 - name: Remove apache2
   apt: name=apache2 state=removed
 # tasks file for gw2019.php
