@@ -12,7 +12,7 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
     master.vm.network "forwarded_port", guest: 443, host: 8443
   end
   config.vm.define "host" do |host|
-    host.vm.box = "ubuntu/trusty64"
+    host.vm.box = "ubuntu/xenial64"
     host.vm.hostname = "web"
     host.vm.network "private_network", ip: "192.168.50.5"
     host.vm.network "forwarded_port", guest: 80, host: 8084
