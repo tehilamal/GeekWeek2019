@@ -1,8 +1,15 @@
+# Create a new instance of Amazon Linux AMI on an
+# t2.micro node with an AWS Tag naming it "GeekWeek2019"
+
 provider "aws" {
-    region = "us-east-1"
+  region = "us-west-2"
 }
 
-resource "aws_instance" "GeekWeek2019" {
-    ami = "ami-0d8f6eb4f641ef691"
-    instance_type = "t2.micro"
+resource "aws_instance" "web" {
+  ami           = "ami-0f2176987ee50226e"
+  instance_type = "t2.micro"
+
+  tags = {
+    Name = "GeekWeek2019"
+  }
 }
