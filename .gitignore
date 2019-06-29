@@ -18,3 +18,9 @@ Ansible/.vagrant/machines/master/virtualbox/vagrant_cwd
 Ansible/.vagrant/rgloader/loader.rb
 .DS_Store
 
+Terraform/Demo1/terraform.tfstate
+Terraform/Demo1/.terraform/plugins/darwin_amd64/lock.json
+Terraform/Demo1/.terraform/plugins/darwin_amd64/terraform-provider-aws_v2.17.0_x4
+Terraform/Demo2/terraform.tfstate
+Terraform/Demo2/.terraform/*
+
