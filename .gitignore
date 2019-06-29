@@ -24,3 +24,15 @@ Terraform/Demo1/.terraform/plugins/darwin_amd64/terraform-provider-aws_v2.17.0_x
 Terraform/Demo2/terraform.tfstate
 Terraform/Demo2/.terraform/*
 
+Terraform/Demo1/terraform.tfstate.backup
+Terraform/Demo3/.terraform/plugins/darwin_amd64/lock.json
+Terraform/Demo2/terraform.tfstate.backup
+Terraform/Demo3/terraform.tfstate
+Terraform/Demo3/terraform.tfstate.backup
+Terraform/Demo3/.terraform/plugins/darwin_amd64/terraform-provider-aws_v2.17.0_x4
+Terraform/Demo4/.terraform.tfstate.lock.info
+Terraform/Demo4/terraform.tfstate.backup
+Terraform/Demo4/terraform.tfstate
+Terraform/Demo4/.terraform/modules/modules.json
+Terraform/Demo4/.terraform/plugins/darwin_amd64/lock.json
+Terraform/Demo4/.terraform/plugins/darwin_amd64/terraform-provider-aws_v2.17.0_x4
