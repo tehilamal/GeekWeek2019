@@ -1,0 +1,6 @@
+---
+- hosts: master
+  
+  tasks:
+    - name: Can we use Ansible to Install nginx server
+      yum: pkg=nginx state=installed update_cache=true

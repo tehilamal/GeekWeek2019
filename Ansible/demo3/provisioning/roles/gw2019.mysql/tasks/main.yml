@@ -1,0 +1,30 @@
+---
+# MySQL
+- name: Install MySQL
+  apt: name={{item}} update_cache=yes cache_valid_time=3600 state=latest
+  with_items:
+    - mysql-server
+    - python-mysqldb
+- name: Generate new root password
+  command: openssl rand -hex 7 creates=/root/.my.cnf
+  register: mysql_new_root_pass
+- name: Remove anonymous users
+  mysql_user: name="" state=absent
+  when: mysql_new_root_pass.changed
+- name: Remove test database
+  mysql_db: name=test state=absent
+  when: mysql_new_root_pass.changed
+- name: Output new root password
+  debug: msg="New root password is {{mysql_new_root_pass.stdout}}"
+  when: mysql_new_root_pass.changed
+- name: Update root password
+  mysql_user: name=root host={{item}} password={{mysql_new_root_pass.stdout}}
+  with_items:
+    - "{{ ansible_hostname }}"
+    - 127.0.0.1
+    - ::1
+    - localhost
+  when: mysql_new_root_pass.changed
+- name: Create my. cnf
+  template: src=my.cnf dest=/root/.my.cnf
+  when: mysql_new_root_pass.changed
