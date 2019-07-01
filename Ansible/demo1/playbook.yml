@@ -1,6 +1,7 @@
 ---
-- hosts: master
-  
+- hosts: web
+  become: True
   tasks:
     - name: Can we use Ansible to Install nginx server
-      yum: pkg=nginx state=installed update_cache=true
+      apt: pkg=nginx state=installed update_cache=true
+    
