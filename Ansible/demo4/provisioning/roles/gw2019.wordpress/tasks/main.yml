@@ -9,9 +9,7 @@
     dest=/tmp/wordpress.zip
     checksum="sha1:{{wp_checksum.content}}"
 - name: Install required tools
-  apt: name={{item}} state=installed
-  with_items:
-    - unzip
+  apt: name=unzip state=present
 - name: Unzip WordPress
   unarchive: src=/tmp/wordpress.zip dest=/tmp copy=no creates=/tmp/wordpress/wp-settings.php
 - name: Create project folder
@@ -23,10 +21,16 @@
   register: db_exist
   ignore_errors: true
   changed_when: false
-- name: Create WordPress MySQL database
-  mysql_db: name=wordpress state=present
-- name: Create WordPress MySQL user
-  mysql_user: name=wordpress host=localhost password=bananas priv=wordpress.*:ALL
-- name: Create wp-config
-  template: src=wp-config.php dest=/var/www/book.example.com/wp-config.php
+- name: Copy WordPress DB
+  copy: src=files/wp-database.sql dest=/tmp/wp-database.sql
+  when: db_exist.rc > 0
+- name: Import WordPress DB
+  mysql_db: target=/tmp/wp-database.sql state=import name=wordpress
+  when: db_exist.rc > 0
+#- name: Create WordPress MySQL database
+#  mysql_db: name=wordpress state=present
+#- name: Create WordPress MySQL user
+#  mysql_user: name=wordpress host=localhost password=bananas priv=wordpress.*:ALL
+#- name: Create wp-config
+#  template: src=wp-config.php dest=/var/www/book.example.com/wp-config.php
 # tasks file for gw2019.wordpress

@@ -1,9 +1,9 @@
 ---
 # nginx
 - name: Install nginx
-  apt: name=nginx state=installed
+  apt: name=nginx state=present
 - name: Start nginx
-  service: name=nginx state=running
+  service: name=nginx state=started
 - name: Create nginx config
   template: src=default dest=/etc/nginx/sites-available/default
   notify: restart nginx

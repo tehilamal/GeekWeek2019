@@ -6,12 +6,12 @@
 - name: Update the apt cache
   apt: update_cache=yes cache_valid_time=3600
 - name: Install PHP
-  apt: name={{item}} update_cache=yes state=installed
-  with_items:
-    - php 
-    - php-fpm 
-    - php-mysql
-    - php-xml
+  apt:
+    pkg:
+      - php
+      - php-fpm
+      - php-mysql
+      - php-xml
 - name: Remove apache2
-  apt: name=apache2 state=removed
+  apt: name=apache2 state=absent
 # tasks file for gw2019.php
